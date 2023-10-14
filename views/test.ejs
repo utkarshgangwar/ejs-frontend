@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="teststyle.css">
+</head>
+
+<body>
+    <!-- <form action="test" method="post">
+        <input type="text" name="firstName"/>
+        <input type="text" name="lastName"/>
+        <input type="submit" value="submit"/>
+    </form>
+
+    <ul>
+        <%customerData.forEach((d)=> { %>
+        <li><%= d.firstName %> <%= d.lastName %></li>
+        <% }) %>
+    </ul> -->
+
+    <ul>
+        <p> Dates = ( <span id="output"></span> Night ) </p>
+    </ul>
+
+    <form action="test" method="post" onchange="calculate(this)">
+        <input id="checkIn" type="date" name="checkIn" />
+        <input id="checkOut" type="date" name="checkOut" />
+
+
+    </form>
+
+    <script>
+
+        function calculate(checkIn, checkout) {
+            var date1 = document.getElementById('checkIn').value;
+            var date2 = document.getElementById('checkOut').value;
+            console.log(date1, date2);
+
+            var timeDiff = Math.abs(Date.parse(date1) - Date.parse(date2));
+            var numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            document.getElementById('output').innerHTML = numberOfNights;
+
+            console.log(div);
+
+        }
+    </script>
+
+    <!-- /////////////////////// -->
+    <div>
+        <input id=room type=number min=0 max=8>
+        <button onclick="incrementRooms()">+</button>
+        <button onclick="decrementRooms()">-</button>
+    </div>
+    <div>
+        <input id=adult type=number min=0 max=8>
+        <button onclick="incrementAdult()">+</button>
+        <button onclick="decrementAdult()">-</button>
+    </div>
+    <div>
+        <input id=children type=number min=0 max=8>
+        <button onclick="incrementChildren()">+</button>
+        <button onclick="decrementChildren()">-</button>
+    </div>
+
+    <script>
+        function incrementRooms() {
+            document.getElementById('room').stepUp();
+        }
+        function decrementRooms() {
+            document.getElementById('room').stepDown();
+        }
+
+        function incrementAdult() {
+            document.getElementById('adult').stepUp();
+        }
+        function decrementAdult() {
+            document.getElementById('adult').stepDown();
+        }
+
+        function incrementChildren() {
+            document.getElementById('children').stepUp();
+        }
+        function decrementChildren() {
+            document.getElementById('children').stepDown();
+        }
+    </script>
+    <!-- /////////////////////// -->
+
+    <div class="box-form">
+        <label for="name" style="margin-right: 10rem;">Rooms</label>
+        <div class="dec button">-</div>
+        <input type="text" name="qty" id="1" value="0" class="input-filed" style="text-align: center;">
+        <div class="inc button">+</div>
+    </div>
+
+    <div class="box-form">F
+        <label for="name" style="margin-right: 10rem;">Adults</label>
+        <div class="dec button">-</div>
+        <input type="text" name="qty" id="1" value="0" class="input-filed" style="text-align: center;">
+        <div class="inc button">+</div>
+    </div>
+
+    <div class="box-form">
+        <label for="name" style="margin-right: 10rem;">Children</label>
+        <div class="dec button">-</div>
+        <input type="text" name="qty" id="1" value="0" class="input-filed" style="text-align: center;">
+        <div class="inc button" onclick="add()">+</div>
+        <div>
+            <span id="fooBar">&nbsp;</span>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var incrementButton = document.getElementsByClassName('inc');
+        var decrementButton = document.getElementsByClassName('dec');
+        // console.log(incrementButton);
+        // console.log(decrementButton);
+
+        // Increment
+        for (var i = 0; i < incrementButton.length; i++) {
+            var button = incrementButton[i];
+            button.addEventListener('click', function (event) {
+
+                var buttonClicked = event.target;
+                var input = buttonClicked.parentElement.children[2];
+                var inputValue = input.value;
+                var newValue = parseInt(inputValue) + 1;
+
+                if (newValue <= 8) input.value = newValue;
+                else {
+                    input.value = 8;
+                    // alert('Qty Can Not Be More Than Eight');
+                }
+            })
+        }
+
+        // Decrement
+        for (var i = 0; i < decrementButton.length; i++) {
+            var button = decrementButton[i];
+            button.addEventListener('click', function (event) {
+
+                var buttonClicked = event.target;
+                var input = buttonClicked.parentElement.children[2];
+                var inputValue = input.value;
+                var newValue = parseInt(inputValue) - 1;
+
+                if (newValue >= 0) input.value = newValue;
+                else {
+                    input.value = 0;
+                    // alert('Qty Can Not Be Less Than Zero');
+                }
+            })
+        }
+
+    </script>
+
+    <script>
+        function add() {
+            for (i = 1; i <= 1; i++) {
+                //Create an input type dynamically.
+                var element = document.createElement("input");
+
+                //Assign different attributes to the element.
+                element.setAttribute("type", i);
+                element.setAttribute("name", i);
+                element.setAttribute("value", i);
+
+                var brElement = document.createElement("br");
+
+                var foo = document.getElementById("fooBar");
+
+                //Append the element in page (in span).
+                foo.appendChild(element);
+                foo.appendChild(brElement);
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <button value="showAlert" onclick="showAlert();"> Show Alert</button>
+
+    <div class="container" style="display:none;" id="myAlert">
+        <h2>Dismissal Alert Messages</h2>
+        <div class="alert alert-success alert-dismissable" id="myAlert2">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Success! message sent successfully.
+        </div>
+
+    </div>
+
+    <input type="button" id="clickme" value="Click me!" />
+    <div id="alert_placeholder"></div>
+
+
+    <script>
+        function showAlert() {
+            if ($("#myAlert").find("div#myAlert2").length == 0) {
+                $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Success! message sent successfully.</div>");
+            }
+            $("#myAlert").css("display", "");
+        }
+    </script>
+
+    <!-- FROST -->
+
+
+
+
+
+
+</body>
+
+</html>
+		<!-- check availability Start Big Screens-->
+		<div class="check-availability-div" style="background-color: pink; z-index: 2;">
+			<div class="container">
+				<div class="row" style="margin-bottom: -20rem !important;">
+					<div id="availability-A">
+
+						<form id="bookingForm" class="check-div" name="bookingForm" action="home" method="post"
+							onchange="calculate(this)">
+
+							<div class="a-col" style="background-color: black;">
+								<section class="ca-1">
+									<div class="first-block">
+										<span class="c-a-font">
+											<i style="font-size:20px; color: white;" class="fa">&#xf073;</i>
+											DATES ( <span id="Nights"></span> NIGHT )
+										</span>
+										<div>
+											<div class="check-heading">
+												<h5
+													style="float: left; color: white; font-size: 15px; margin-top: 0px;">
+													Check
+													In</h5>
+												<h5
+													style="float: right; color: white; font-size: 15px; margin-top: 0px;">
+													Check
+													Out</h5>
+											</div>
+											<div>
+												<input id="checkInId" class="check-in-date-div" type="date"
+													name="checkInData" placeholder="check In" required min=minDate />
+												<i class="fa check-arrow">
+													&#xf178;
+												</i>
+												<input id="checkOutId" class="check-out-date-div" type="date"
+													name="checkOutData" placeholder="check Out" required min=minDate
+													onchange="check()" />
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="vertical-line"></div>
+							<div class="a-col alternate alternatea" style="background-color: black;">
+								<span class="c-a-font">
+									<i style="font-size:20px; color: white;"
+										class="fa fa-suitcase">&#xf0f2;</i><span>&nbsp;
+										ROOMS & GUESTS</span>
+								</span>
+								<div class="block-two-2">
+									<div class="block-two-3">
+										<h5 class="check-heading" style="color: white; font-size: 15px; float: left;">
+											Room</h5>
+										<p class="check-value"><span id="adultV"></span></p>
+
+										<h5 class="check-heading"
+											style="color: white; font-size: 15px; float: left; padding-left: 1rem;">
+											Adult</h5>
+										<p class="check-value">
+											<span id="roomV"></span>
+										</p>
+
+										<div>
+											<h5 class="check-heading c-a-font"
+												style="color: white; float: left; padding-left: 1rem;">
+												Children</h5>
+											<p class="check-value">
+												<span id="childV" class="childV" style="margin-left: -1rem;"></span>
+											</p>
+										</div>
+
+									</div>
+
+									<!-- <div style="padding-top: 5rem;">
+													</div> -->
+								</div>
+
+								<div class="btn-group" style="margin-top: 5px !important;">
+
+
+									<!-- <button type="button"
+														class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+														data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+														style=" margin-left: 23px; margin-top: 2rem;">
+														<span class="sr-only">Toggle Dropdown</span>
+													</button> -->
+									<div class="btn dropdown">
+										<button class="dropdown-btn" type="button" data-toggle="dropdown">
+										</button>
+										<div class="dropdown-menu" onclick="event.stopPropagation()">
+											<div id="wrapper">
+												<div id="c1">
+													<div class="panel" style=" background: none; max-height: 100%;">
+														<p style="
+																			color: black;
+																			padding-top: 1rem;
+																			margin-bottom: 0rem;
+																			font-size: small;
+																			text-align: center;
+																		">
+															MAXIMUM 4 GUESTS PER ROOM
+														</p>
+														<!-- Rooms Start-->
+														<div class="box-form" style=" 
+																			background: none;
+																			padding: 0px !important;">
+															<div style="margin-right: 2rem;
+																			padding-right: 2rem;">
+																<label for="name" color: black;">
+																	<span style="float: left;">Rooms</span> <br>
+																	<p style="
+																			color: black;
+																			font-size: small;
+																		">(Max: 3 total rooms/person)</p>
+																</label>
+															</div>
+
+															<button type="button" class="decRooms button"
+																style="border: 1px solid rgb(0, 0, 0)">
+																-
+															</button>
+
+															<input id="rooms" type="number" name="rooms" value="1"
+																class="input-filed rooms"
+																style="text-align: center; background: none; color:black; font-weight:bold; border: none;"
+																required autocomplete="off" readonly>
+															<button type="button" id="rminc" class="incRooms button"
+																style="border: 1px solid rgb(0, 0, 0)"> + </button>
+														</div>
+														<!-- Rooms End-->
+														<!-- Adults Start-->
+														<div class="box-form" style=" background: none;"
+															style="padding: 0px !important;">
+															<div style="margin-right: 2rem;
+																			padding-right: 3rem;">
+																<label for="name" color: black;">
+																	<span style="float: left;">Adults</span> <br>
+																	<p style="
+																				color: black;
+																				font-size: small;
+																			">(Max: 4 total guests/room)</p>
+																</label>
+															</div>
+
+															<button type="button" class="dec button"
+																style="border: 1px solid rgb(0, 0, 0)">
+																-
+															</button>
+															<input id="adults" type="number" name="adults" value="1"
+																class="input-filed adults"
+																style="text-align: center; background: none; color:black; font-weight:bold; border: none;"
+																required autocomplete="off" readonly>
+															<button type="button" id="adltinc" class="inc button"
+																style="border: 1px solid rgb(0, 0, 0);"> +
+															</button>
+														</div>
+														<!-- Adults End-->
+														<!-- Children Start -->
+														<div class="box-form" name="childrenDiv"
+															style=" background: none;" style="padding: 0px !important;">
+															<div style="margin-right: 2rem;
+																			padding-right: 3rem;">
+																<label for="name" color: black;">
+																	<span style="float: left;">Children</span><br>
+																	<p style="
+																			color: black;
+																			font-size: small;
+																		">(Max: 4 total guests/room)</p>
+																</label>
+															</div>
+															<button type="button" class="Childdec button"
+																style="border: 1px solid rgb(0, 0, 0)">
+																-
+															</button>
+															<input id="children" type="number" name="children" value="0"
+																class="input-filed"
+																style="text-align: center; background: none; color:black; font-weight:bold; border: none;"
+																readonly>
+															<button type="button" id="chdinc" class="Childinc button"
+																name="childrenInc" onclick="showPara();"
+																style="border: 1px solid rgb(0, 0, 0)">
+																+
+															</button>
+														</div>
+														<!-- Children End -->
+													</div>
+												</div>
+												<!-- Age of Children  START-->
+												<div id="c2">
+													<p style="
+																	color: black;
+																	padding-top: 1rem;
+																	margin-bottom: 0rem;
+																	font-size: small;
+																	text-align: center;
+																	font-weight: bold;
+																		">Age of
+														Children
+														Required</p>
+													<p style="
+																			color: black;
+																			padding-top: 1rem;
+																			margin-bottom: 0rem;
+																			font-size: xx-small;
+																			text-align: center;
+																		">(0 for 0-12 months)</p>
+													<span id="fooBar"></span>
+												</div>
+												<!-- Age of Children  END-->
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="vertical-line"></div>
+							<div class="a-col alternate alternateb alternateb2" style="background-color: black;">
+								<span class="d-1" style="color: white; font-size: 15px;">
+									<i style="font-size:20px; color: white;" class="fa fa-suitcase-box">&#xf0f2;</i>
+									<span class="c-a-font">SPECIAL RATES</span>
+								</span>
+							</div>
+							<div class="a-col action block3 block3a" style="background-color: black;">
+								<a href="#" onclick="submitForm()">
+									<span id="c-a-text">Check <br>Availability</span>
+
+								</a>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- check availability End -->
